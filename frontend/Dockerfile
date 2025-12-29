@@ -1,5 +1,5 @@
 FROM node:20-alpine AS build
-ARG REACT_APP_API_URL=http://localhost:5000
+ARG REACT_APP_API_URL=http://138.197.202.120:5000
 WORKDIR /app
 COPY package*.json ./
 RUN npm install
