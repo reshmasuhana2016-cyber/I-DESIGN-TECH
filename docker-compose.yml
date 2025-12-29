@@ -11,10 +11,11 @@ services:
     restart: always
 
   frontend:
-    build: ./frontend
+    build:
+      context: ./frontend
+      args:
+        - REACT_APP_API_URL=http://138.197.202.120:5000
     container_name: frontend
-    env_file:
-      - ./frontend/.env
     ports:
       - "80:80"
     depends_on:
@@ -22,10 +23,11 @@ services:
         condition: service_started
 
   admin:
-    build: ./admin
+    build:
+      context: ./admin
+      args:
+        - REACT_APP_API_URL=http://138.197.202.120:5000
     container_name: admin
-    env_file:
-      - ./admin/.env
     ports:
       - "3001:80"
     depends_on:
