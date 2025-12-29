@@ -1,29 +1,30 @@
-version: '3.9'
+version: "3.9"
 
 services:
   backend:
     build: ./backend
     container_name: backend
+    env_file: ./backend/backend.env
     ports:
       - "5000:5000"
-    env_file:
-      - ./backend/.env
-    volumes:
-      - ./backend/uploads:/app/uploads   # 👈 THIS IS THE VOLUME
     restart: always
 
   frontend:
-    build: ./frontend
-    container_name: frontend
-    ports:
-      - "80:80"
-    depends_on:
-      - backend
+  build: ./frontend
+  container_name: frontend
+  env_file:
+    - ./frontend/frontend.env
+  ports:
+    - "80:80"
+  depends_on:
+    - backend
 
-  admin:
-    build: ./admin
-    container_name: admin
-    ports:
-      - "3001:80"
-    depends_on:
-      - backend
+admin:
+  build: ./admin
+  container_name: admin
+  env_file:
+    - ./admin/admin.env
+  ports:
+    - "3001:80"
+  depends_on:
+    - backend

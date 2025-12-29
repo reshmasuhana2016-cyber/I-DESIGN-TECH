@@ -11,7 +11,7 @@ const Innerpage = () => {
     const fetchService = async () => {
       try {
         const res = await fetch(
-          `${process.env.REACT_APP_API_URI}/api/services/getservices`
+          `${process.env.REACT_APP_API_URL}/api/services/getservices`
         );
 
         const json = await res.json();

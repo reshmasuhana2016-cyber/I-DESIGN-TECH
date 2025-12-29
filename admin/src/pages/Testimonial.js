@@ -60,7 +60,7 @@ const Testimonial = () => {
 
 
       const response = await fetch(
-        `${process.env.REACT_APP_API_URI}/api/testimonial/addtestimonial`,
+        `${process.env.REACT_APP_API_URL}/api/testimonial/addtestimonial`,
         {
           method: "POST",
           body: FormDataToSend,
@@ -103,7 +103,7 @@ const Testimonial = () => {
 
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_API_URI}/api/testimonial/update/${editid}`,
+        `${process.env.REACT_APP_API_URL}/api/testimonial/update/${editid}`,
         {
           method: "PUT",
           body: FormDataToSend,
@@ -144,14 +144,14 @@ const Testimonial = () => {
       image: null,
     });
     setPreview(
-      `${process.env.REACT_APP_API_URI}/${testimonial.image}?t=${Date.now()}`
+      `${process.env.REACT_APP_API_URL}/${testimonial.image}?t=${Date.now()}`
     );
   };
 
   const handleDeleteClick = async (id) => {
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_API_URI}/api/testimonial/delete/${id}`,
+        `${process.env.REACT_APP_API_URL}/api/testimonial/delete/${id}`,
         { method: "DELETE" }
       );
 
@@ -291,7 +291,7 @@ const Testimonial = () => {
               <div className="bg-white p-3 rounded-4 shadow-sm h-100">
                 <div className="rounded-4 bg-light p-3 text-center">
                   <img
-                    src={`${process.env.REACT_APP_API_URI}/${
+                    src={`${process.env.REACT_APP_API_URL}/${
                       testimonial.image
                     }?t=${Date.now()}`}
                     alt={testimonial.name}

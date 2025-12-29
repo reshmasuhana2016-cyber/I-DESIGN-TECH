@@ -143,7 +143,7 @@ const Services = () => {
       formdata.images.forEach((img) => FormDataToSend.append("images", img));
 
       const response = await fetch(
-        `${process.env.REACT_APP_API_URI}/api/services/addservice`,
+        `${process.env.REACT_APP_API_URL}/api/services/addservice`,
         {
           method: "POST",
           body: FormDataToSend,
@@ -216,7 +216,7 @@ if (imagesRef.current) imagesRef.current.value = "";
       removedImages.forEach((img) => FormDataToSend.append("removedImages", img));
 
       const response = await fetch(
-        `${process.env.REACT_APP_API_URI}/api/services/update/${editid}`,
+        `${process.env.REACT_APP_API_URL}/api/services/update/${editid}`,
         {
           method: "PUT",
           body: FormDataToSend,
@@ -246,7 +246,7 @@ if (imagesRef.current) imagesRef.current.value = "";
 
   const handleDeleteClick = async (id) => {
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URI}/api/services/delete/${id}`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/services/delete/${id}`, {
         method: "DELETE",
       });
 
@@ -310,7 +310,7 @@ if (imagesRef.current) imagesRef.current.value = "";
                 <input type="file" className="form-control" name="brochure" onChange={handleFileChange} ref={brochureRef} />
                 {editid && existingFiles.brochure && (
                   <a
-                    href={`${process.env.REACT_APP_API_URI}/${existingFiles.brochure}`}
+                    href={`${process.env.REACT_APP_API_URL}/${existingFiles.brochure}`}
                     target="_blank"
                     rel="noreferrer"
                     className="d-block mt-1 text-primary small"
@@ -341,7 +341,7 @@ if (imagesRef.current) imagesRef.current.value = "";
                     {existingFiles.images.map((img, index) => (
                       <div key={index} className="position-relative">
                         <img
-                          src={`${process.env.REACT_APP_API_URI}/${img}`}
+                          src={`${process.env.REACT_APP_API_URL}/${img}`}
                           width="90"
                           height="70"
                           className="rounded-3"
@@ -398,7 +398,7 @@ if (imagesRef.current) imagesRef.current.value = "";
                   {service.images?.map((img, i) => (
                     <img
                       key={i}
-                      src={`${process.env.REACT_APP_API_URI}/${img}`}
+                      src={`${process.env.REACT_APP_API_URL}/${img}`}
                       alt=""
                       className="rounded-3"
                       width="80"
@@ -414,7 +414,7 @@ if (imagesRef.current) imagesRef.current.value = "";
                 <div className="d-flex gap-2 flex-wrap">
                   {service.brochure && (
                     <a
-                      href={`${process.env.REACT_APP_API_URI}/${service.brochure}`}
+                      href={`${process.env.REACT_APP_API_URL}/${service.brochure}`}
                       target="_blank"
                       rel="noreferrer"
                       className="btn btn-outline-primary btn-sm"

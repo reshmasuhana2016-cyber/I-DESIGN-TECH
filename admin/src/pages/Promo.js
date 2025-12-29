@@ -46,7 +46,7 @@ const Promo = () => {
 
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_API_URI}/api/promos/addpromo`,
+        `${process.env.REACT_APP_API_URL}/api/promos/addpromo`,
         {
           method: "POST",
           headers: {
@@ -85,7 +85,7 @@ const Promo = () => {
 
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_API_URI}/api/promos/update/${editid}`,
+        `${process.env.REACT_APP_API_URL}/api/promos/update/${editid}`,
         {
           method: "PUT",
           headers: {
@@ -124,7 +124,7 @@ const Promo = () => {
   const handleDeleteClick = async (id) => {
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_API_URI}/api/promos/delete/${id}`,
+        `${process.env.REACT_APP_API_URL}/api/promos/delete/${id}`,
         { method: "DELETE" }
       );
 

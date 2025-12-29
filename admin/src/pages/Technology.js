@@ -43,7 +43,7 @@ const Technology = () => {
       formDataToSend.append("image", formdata.image);
 
       const response = await fetch(
-        `${process.env.REACT_APP_API_URI}/api/technologies/addtechnology`,
+        `${process.env.REACT_APP_API_URL}/api/technologies/addtechnology`,
         {
           method: "POST",
           body: formDataToSend,
@@ -86,7 +86,7 @@ const Technology = () => {
       }
 
       const response = await fetch(
-        `${process.env.REACT_APP_API_URI}/api/technologies/update/${editid}`,
+        `${process.env.REACT_APP_API_URL}/api/technologies/update/${editid}`,
         {
           method: "PUT",
           body: formDataToSend,
@@ -117,7 +117,7 @@ const Technology = () => {
   setErrors(null);
   setEditid(technology._id);
   setFormdata({ image: null });
-  setPreview(`${process.env.REACT_APP_API_URI}/${technology.image}`);
+  setPreview(`${process.env.REACT_APP_API_URL}/${technology.image}`);
   fileRef.current.value = "";
 };
 
@@ -125,7 +125,7 @@ const Technology = () => {
   const handleDeleteClick = async (id) => {
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_API_URI}/api/technologies/delete/${id}`,
+        `${process.env.REACT_APP_API_URL}/api/technologies/delete/${id}`,
         { method: "DELETE" }
       );
 
@@ -211,7 +211,7 @@ const Technology = () => {
               <div className="bg-white p-3 rounded-4 shadow-sm h-100">
                 <div className="bg-light p-4 rounded-4 text-center">
                   <img
-                    src={`${process.env.REACT_APP_API_URI}/${
+                    src={`${process.env.REACT_APP_API_URL}/${
                       technology.image
                     }?t=${Date.now()}`}
                     alt=""

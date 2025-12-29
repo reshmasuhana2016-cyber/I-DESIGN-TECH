@@ -7,10 +7,10 @@ const PromoSection = () => {
   useEffect(() => {
     const fetchPromos = async () => {
       try {
-        console.log("API URI:", process.env.REACT_APP_API_URI);
+        console.log("API URI:", process.env.REACT_APP_API_URL);
 
         const response = await fetch(
-          `${process.env.REACT_APP_API_URI}/api/promos/getpromos`
+          `${process.env.REACT_APP_API_URL}/api/promos/getpromos`
           // ⬆️ make sure this matches backend route
         );
 

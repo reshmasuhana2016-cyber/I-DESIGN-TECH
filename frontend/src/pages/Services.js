@@ -14,7 +14,7 @@ const ServicesSection = () => {
     const fetchServices = async () => {
       try {
         const response = await fetch(
-          `${process.env.REACT_APP_API_URI}/api/services/getservices`
+          `${process.env.REACT_APP_API_URL}/api/services/getservices`
         );
 
         if (!response.ok) {
@@ -48,9 +48,9 @@ const ServicesSection = () => {
               <div className="service-card horizontal-card">
                 {/* Image */}
                 <div className="service-img">
-                  {/* src={`${process.env.REACT_APP_API_URI}/${service.image}`} */}
+                  {/* src={`${process.env.REACT_APP_API_URL}/${service.image}`} */}
                  <img
-  src={`${process.env.REACT_APP_API_URI}/${service.images?.[0]}`}
+  src={`${process.env.REACT_APP_API_URL}/${service.images?.[0]}`}
   alt={service.longname}
 />
                 </div>

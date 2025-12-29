@@ -25,7 +25,7 @@ const StoreState = ({ children }) => {
       if (!token) return;
 
       const response = await fetch(
-        `${process.env.REACT_APP_API_URI}/api/users/getuser`,
+        `${process.env.REACT_APP_API_URL}/api/users/getuser`,
         {
           method: "GET",
           headers: {
@@ -63,7 +63,7 @@ const StoreState = ({ children }) => {
   const fetchProducts = async (endpoint, setState) => {
       try {
         const response = await fetch(
-          `${process.env.REACT_APP_API_URI}${endpoint}`
+          `${process.env.REACT_APP_API_URL}${endpoint}`
         );
   
         const data = await response.json();

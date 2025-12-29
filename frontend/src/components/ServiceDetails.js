@@ -10,7 +10,7 @@ const ServiceDetails = () => {
   useEffect(() => {
     const fetchService = async () => {
       const res = await fetch(
-        `${process.env.REACT_APP_API_URI}/api/services/getservices`
+        `${process.env.REACT_APP_API_URL}/api/services/getservices`
       );
       const data = await res.json();
       const services = data.data || data;
@@ -95,7 +95,7 @@ const ServiceDetails = () => {
                       className={`carousel-item ${index === 0 ? "active" : ""}`}
                     >
                       <img
-                        src={`${process.env.REACT_APP_API_URI}/${img}`}
+                        src={`${process.env.REACT_APP_API_URL}/${img}`}
                         className="w-100 service-carousel-img"
                         alt={`Slide ${index + 1}`}
                       />
@@ -150,7 +150,7 @@ const ServiceDetails = () => {
 
               {service.brochure && (
                 <a
-                  href={`${process.env.REACT_APP_API_URI}/${service.brochure}`}
+                  href={`${process.env.REACT_APP_API_URL}/${service.brochure}`}
                   target="_blank"
                   rel="noreferrer"
                   className="btn btn-primary w-100"

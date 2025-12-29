@@ -13,7 +13,7 @@ useEffect(() => {
   const fetchTestimonials = async () => {
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_API_URI}/api/testimonial/gettestimonial`
+        `${process.env.REACT_APP_API_URL}/api/testimonial/gettestimonial`
       );
 
       if (!response.ok) {
@@ -96,7 +96,7 @@ useEffect(() => {
 
                         <div className="d-flex align-items-center gap-3 mt-3">
                           <img
-                           src={`${process.env.REACT_APP_API_URI}/${item.image}`}
+                           src={`${process.env.REACT_APP_API_URL}/${item.image}`}
                             
                             alt={item.name}
                             className="rounded-circle"

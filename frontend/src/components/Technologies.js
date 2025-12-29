@@ -12,7 +12,7 @@ const Technologies = () => {
     const fetchTechnologies = async () => {
       try {
         const response = await fetch(
-          `${process.env.REACT_APP_API_URI}/api/technologies/gettechnologies`
+          `${process.env.REACT_APP_API_URL}/api/technologies/gettechnologies`
         );
 
         if (!response.ok) {
@@ -68,7 +68,7 @@ const Technologies = () => {
         {technologies.map((tech) => (
           <SwiperSlide key={tech._id}>
             <img
-      src={`${process.env.REACT_APP_API_URI}/${tech.image}`}
+      src={`${process.env.REACT_APP_API_URL}/${tech.image}`}
       alt="Technology"
       className="img-fluid tech-logo"
     />
