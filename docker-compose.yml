@@ -4,27 +4,30 @@ services:
   backend:
     build: ./backend
     container_name: backend
-    env_file: ./backend/backend.env
+    env_file:
+      - ./backend/backend.env
     ports:
       - "5000:5000"
     restart: always
 
   frontend:
-  build: ./frontend
-  container_name: frontend
-  env_file:
-    - ./frontend/frontend.env
-  ports:
-    - "80:80"
-  depends_on:
-    - backend
+    build: ./frontend
+    container_name: frontend
+    env_file:
+      - ./frontend/frontend.env
+    ports:
+      - "80:80"
+    depends_on:
+      backend:
+        condition: service_started
 
-admin:
-  build: ./admin
-  container_name: admin
-  env_file:
-    - ./admin/admin.env
-  ports:
-    - "3001:80"
-  depends_on:
-    - backend
+  admin:
+    build: ./admin
+    container_name: admin
+    env_file:
+      - ./admin/admin.env
+    ports:
+      - "3001:80"
+    depends_on:
+      backend:
+        condition: service_started
