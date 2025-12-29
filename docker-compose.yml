@@ -26,7 +26,7 @@ services:
     build:
       context: ./admin
       args:
-        - REACT_APP_API_URL=http://138.197.202.120:5000
+        - REACT_APP_API_URL=http://138.197.202.120:5000/api
     container_name: admin
     ports:
       - "3001:80"
