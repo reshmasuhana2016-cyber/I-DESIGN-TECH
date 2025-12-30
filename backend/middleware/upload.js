@@ -1,15 +1,22 @@
 import multer from "multer";
 import path from "path";
+import fs from "fs";
+
+// Ensure uploads folder exists
+const uploadsFolder = path.join(__dirname, "uploads");
+if (!fs.existsSync(uploadsFolder)) {
+  fs.mkdirSync(uploadsFolder, { recursive: true });
+}
 
 // Storage setup
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "uploads/");  // folder for images + pdf + videos
+    cb(null, uploadsFolder); // absolute path
   },
 
   filename: (req, file, cb) => {
     cb(null, Date.now() + "_" + file.originalname);
-  }
+  },
 });
 
 // File Filter (allow images + pdf + videos)
@@ -21,7 +28,7 @@ const fileFilter = (req, file, cb) => {
     "application/pdf",
     "video/mp4",
     "video/mpeg",
-    "video/quicktime"
+    "video/quicktime",
   ];
 
   if (allowedTypes.includes(file.mimetype)) {

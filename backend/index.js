@@ -10,25 +10,23 @@ import servicesRoute from "./routes/servicesRoute.js";
 import path from "path";
 import { fileURLToPath } from "url";
 
-
-
 dotenv.config();
-
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-
+// Connect to DB
 connectToDB();
-
 
 // Middleware
 app.use(cors());
 app.use(express.json());
 
+// Fix for __dirname in ES module
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+// Serve uploads folder correctly
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 // Routes
@@ -38,5 +36,5 @@ app.use("/api/testimonial", testimonialRoute);
 app.use("/api/technologies", technologiesRoute);
 app.use("/api/services", servicesRoute);
 
-// const PORT = process.env.PORT || 5000;
+// Start server
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
