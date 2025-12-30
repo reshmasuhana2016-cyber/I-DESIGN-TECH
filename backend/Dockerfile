@@ -1,5 +1,4 @@
-✅ FIX #1 (MANDATORY): Create uploads folder inside Docker image
-🔧 Update your Dockerfile
+
 FROM node:20-alpine
 
 WORKDIR /app
