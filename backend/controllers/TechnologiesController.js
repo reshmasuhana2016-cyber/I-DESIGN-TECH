@@ -1,5 +1,10 @@
 import Technologies from "../models/TechnologiesModel.js";
 import path from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const uploadsFolder = path.join(__dirname, "..", "uploads");
 
 const addTechnology = async (req, res) => {
   if (!req.file) {
@@ -9,9 +14,9 @@ const addTechnology = async (req, res) => {
   }
   try {
     // Store relative path that matches the static /uploads route
-    const relativePath = path.relative(process.cwd(), req.file.path).replace(/\\/g, '/');
+    const relativePath = path.relative(uploadsFolder, req.file.path).replace(/\\/g, '/');
     const technology = await Technologies.create({
-      image: relativePath,
+      image: `uploads/${relativePath}`,
     });
     res
       .status(200)
@@ -64,9 +69,9 @@ const updateTechnology = async (req, res) => {
 
     // Creating update object manually
     // Store relative path that matches the static /uploads route
-    const relativePath = path.relative(process.cwd(), req.file.path).replace(/\\/g, '/');
+    const relativePath = path.relative(uploadsFolder, req.file.path).replace(/\\/g, '/');
     const updateData = {
-      image: relativePath,
+      image: `uploads/${relativePath}`,
     };
 
     // Update document
