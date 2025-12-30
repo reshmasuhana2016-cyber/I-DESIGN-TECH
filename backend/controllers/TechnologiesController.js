@@ -8,7 +8,7 @@ const addTechnology = async (req, res) => {
   }
   try {
     const technology = await Technologies.create({
-      image: req.file.path,
+      image: `uploads/${req.file.filename}`,
     });
     res
       .status(200)
@@ -61,7 +61,7 @@ const updateTechnology = async (req, res) => {
 
     // Creating update object manually
     const updateData = {
-      image: req.file.path, // <-- updated image field
+      image: `uploads/${req.file.filename}`, // <-- updated image field
     };
 
     // Update document
