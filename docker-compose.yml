@@ -8,8 +8,8 @@ services:
     container_name: backend
     ports:
       - "5000:5000"
-    volumes:
-      - ./uploads:/app/uploads
+   volumes:
+      - ./backend/uploads:/app/uploads
     restart: always
 
   frontend:

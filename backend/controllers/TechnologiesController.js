@@ -1,4 +1,5 @@
 import Technologies from "../models/TechnologiesModel.js";
+import path from "path";
 
 const addTechnology = async (req, res) => {
   if (!req.file) {
@@ -7,8 +8,10 @@ const addTechnology = async (req, res) => {
       .json({ success: false, message: "Image is Required" });
   }
   try {
+    // Store relative path that matches the static /uploads route
+    const relativePath = path.relative(process.cwd(), req.file.path).replace(/\\/g, '/');
     const technology = await Technologies.create({
-      image: `uploads/${req.file.filename}`,
+      image: relativePath,
     });
     res
       .status(200)
@@ -60,8 +63,10 @@ const updateTechnology = async (req, res) => {
     }
 
     // Creating update object manually
+    // Store relative path that matches the static /uploads route
+    const relativePath = path.relative(process.cwd(), req.file.path).replace(/\\/g, '/');
     const updateData = {
-      image: `uploads/${req.file.filename}`, // <-- updated image field
+      image: relativePath,
     };
 
     // Update document

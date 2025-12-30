@@ -1,43 +1,26 @@
 import multer from "multer";
 import path from "path";
 import fs from "fs";
+import { fileURLToPath } from "url";
 
-// Ensure uploads folder exists
-const uploadsFolder = path.join(__dirname, "uploads");
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const uploadsFolder = path.join(__dirname, "..", "uploads"); // IMPORTANT
+
 if (!fs.existsSync(uploadsFolder)) {
   fs.mkdirSync(uploadsFolder, { recursive: true });
 }
 
-// Storage setup
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, uploadsFolder); // absolute path
+    cb(null, uploadsFolder);
   },
-
   filename: (req, file, cb) => {
     cb(null, Date.now() + "_" + file.originalname);
   },
 });
 
-// File Filter (allow images + pdf + videos)
-const fileFilter = (req, file, cb) => {
-  const allowedTypes = [
-    "image/jpeg",
-    "image/png",
-    "image/jpg",
-    "application/pdf",
-    "video/mp4",
-    "video/mpeg",
-    "video/quicktime",
-  ];
-
-  if (allowedTypes.includes(file.mimetype)) {
-    cb(null, true);
-  } else {
-    cb(new Error("Only images, PDF, and video files are allowed"), false);
-  }
-};
-
-const upload = multer({ storage, fileFilter });
+const upload = multer({ storage });
 
 export default upload;
