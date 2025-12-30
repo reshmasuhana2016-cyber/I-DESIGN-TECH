@@ -7,9 +7,19 @@ const addTechnology = async (req, res) => {
       .json({ success: false, message: "Image is Required" });
   }
   try {
+    // Convert Windows path to forward slashes and get relative path
+    const imagePath = `/uploads/${req.file.filename}`;
+    
     const technology = await Technologies.create({
-      image: req.file.path,
+      image: imagePath,
     });
+    
+    if (!technology) {
+      return res
+        .status(400)
+        .json({ success: false, message: "Failed to create technology" });
+    }
+    
     res
       .status(201)
       .json({
@@ -18,6 +28,7 @@ const addTechnology = async (req, res) => {
         data: technology,
       });
   } catch (error) {
+    console.error("Error creating technology:", error);
     res
       .status(400)
       .json({
@@ -61,7 +72,7 @@ const updateTechnology = async (req, res) => {
 
     // Creating update object manually
     const updateData = {
-      image: req.file.path, // <-- updated image field
+      image: `/uploads/${req.file.filename}`, // <-- updated image field with relative path
     };
 
     // Update document
